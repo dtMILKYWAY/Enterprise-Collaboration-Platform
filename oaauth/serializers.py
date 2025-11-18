@@ -11,8 +11,6 @@ class SimpleUserSerializer(serializers.ModelSerializer):
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    """部门序列化器（最终完美版）"""
-    # --- “读”操作配置 ---
     # manager_info 字段只用于读取，它通过 source='manager' 获取 manager 对象，
     # 并用 SimpleUserSerializer 进行序列化。
     manager_info = SimpleUserSerializer(source='manager', read_only=True)
@@ -23,14 +21,12 @@ class DepartmentSerializer(serializers.ModelSerializer):
         # leader 是 CharField，会被自动处理
         fields = ['id', 'name', 'intro', 'leader', 'manager', 'manager_info']
 
-        # --- “写”操作配置 ---
         # extra_kwargs 允许我们为特定字段在写入时指定特殊的序列化器
         extra_kwargs = {
             # manager 字段在写入时，被视为一个只写的主键字段
             'manager': {'write_only': True, 'required': False},
         }
 
-    # (可选但推荐) 重写 to_representation 方法，让 API 输出更干净
     def to_representation(self, instance):
         # 先获取标准的 representation
         ret = super().to_representation(instance)
@@ -78,14 +74,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        # 1. 首先，调用父类的 validate，完成邮箱和密码的基础验证
+        # 首先，调用父类的 validate，完成邮箱和密码的基础验证
         # 如果这里验证失败，会直接抛出异常，后面的代码不会执行
         data = super().validate(attrs)
 
         # 2. 基础验证通过后，我们拿到了 self.user 对象
         user = self.user
 
-        # 3. 在这里实现我们自己的、更复杂的权限检查
+        # 3. 在这里实现更复杂的权限检查
 
         # 检查条件1：用户是否是 staff (管理员)
         is_manager_staff = user.is_staff
@@ -116,4 +112,5 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = OAUser.objects.create_user(**validated_data)
+
         return user
