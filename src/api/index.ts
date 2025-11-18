@@ -8,7 +8,7 @@ const apiClient = axios.create({
   timeout: 10000,
 });
 
-// 请求拦截器 (这部分是正确的，保持不变)
+// 请求拦截器 
 apiClient.interceptors.request.use(
   (config) => {
     const userStore = useUserStore();
@@ -23,7 +23,6 @@ apiClient.interceptors.request.use(
   }
 );
 
-// ======================= 核心修正：添加缺失的函数 =======================
 // 获取当前登录用户的信息
 export const getUserInfo = () => apiClient.get('/user/info/');
 // ====================================================================
@@ -60,5 +59,6 @@ export const getDashboardData = () => apiClient.get('/dashboard/data/');
 
 // 获取管理员列表
 export const getManagers = () => apiClient.get('/managers/'); // 指向新的 URL
+
 
 export default apiClient;
