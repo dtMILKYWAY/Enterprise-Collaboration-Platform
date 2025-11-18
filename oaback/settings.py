@@ -17,9 +17,6 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-9e87%r8eo#nu0s(_=+nou_zi!*cx7_h4nmgdtmxjok9!yaq5u='
 
@@ -158,3 +155,4 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 #覆盖djingo自带的User模型
 AUTH_USER_MODEL = 'oaauth.OAUser'
+
