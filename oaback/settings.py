@@ -32,9 +32,9 @@ sys.path.insert(0, str(BASE_DIR))
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
-    # ================= 添加这行配置 =================
+    
     "USER_ID_FIELD": "uid", # 告诉 simple-jwt 我们的用户主键字段是 'uid'
-    # ===============================================
+
 }
 
 INSTALLED_APPS = [
@@ -155,4 +155,5 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 #覆盖djingo自带的User模型
 AUTH_USER_MODEL = 'oaauth.OAUser'
+
 
