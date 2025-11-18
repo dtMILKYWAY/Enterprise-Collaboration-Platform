@@ -3,7 +3,6 @@ import { defineStore } from 'pinia';
 import { getUserInfo, login as loginApi } from '@/api';
 import router from '@/router'; // 导入 router 实例
 
-// ... UserInfo 接口定义 ...
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -57,4 +56,5 @@ export const useUserStore = defineStore('user', {
       }
     },
   },
+
 });
