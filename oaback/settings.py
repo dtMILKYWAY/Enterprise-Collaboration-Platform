@@ -57,8 +57,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # close CSRf
-    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -155,5 +153,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 #覆盖djingo自带的User模型
 AUTH_USER_MODEL = 'oaauth.OAUser'
+
 
 
